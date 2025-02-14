@@ -1,0 +1,26 @@
+services:
+  mldonkey:
+    container_name: mldonkey
+    environment:
+      MLDONKEY_UID: 1000
+      MLDONKEY_GID: 1000
+    build: .
+    restart: always
+    ports:
+      # WebUI
+      - "4080:4080"
+      # telnet
+      - "4000:4000"
+      # 
+      - "4001:4001"
+      # ED2K
+      - "20562:20562"
+      - "20566:20566/udp"
+      # kad
+      - "16965:16965"
+      - "16965:16965/udp"      
+      # Overnet
+      - "6209:6209"
+      - "6209:6209/udp"
+    volumes:
+      - "./config:/var/lib/mldonkey/"
